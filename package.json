@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "laravel-elixir": "^5.0.0",
+    "bootstrap-sass": "^3.0.0"
+  },
+  "dependencies": {
+    "async": "^2.1.2",
+    "express": "^4.16.2",
+    "ioredis": "^2.4.0",
+    "quick-local-ip": "^1.0.7",
+    "redis": "^2.8.0",
+    "socket.io": "^1.7.4"
+  }
+}

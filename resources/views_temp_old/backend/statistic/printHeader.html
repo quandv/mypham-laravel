@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript"> 
+    var pdfInfo = {};
+    var x = document.location.search.substring(1).split('&');
+
+    for (var i in x) { var z = x[i].split('=',2); pdfInfo[z[0]] = unescape(z[1]); }
+
+    function getPdfInfo() {
+        var page = pdfInfo.page || 1;
+        if(page != 1) {
+            document.getElementById('pHeader').style.display = 'none';
+        }
+    }
+
+    function hideHeader() {                                                           
+    var vars={};                                                                    
+    var x=document.location.search.substring(1).split('&');                                            
+    for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}          
+    var page = vars.page || 1;
+    if(page == 1){                                                          
+      var elt = document.getElementById("document-header");                         
+      elt.parentNode.removeChild(elt);                                              
+    }                                                                               
+  }
+  function subst() {
+          var vars={};
+          var x=document.location.search.substring(1).split('&');
+          for (var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+          var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+          for (var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for (var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+ 
+           if(vars['page'] != 1){ // If page is 1, set FakeHeaders display to none
+              document.getElementById("doc-header").style.display = 'none';
+           }
+         }
+       }
+    /*function subst() {  
+      var vars = {};  
+        
+      // explode the URL query string  
+      var x = document.location.search.substring(1).split('&');  
+        
+      // loop through each query string segment and get keys/values  
+      for (var i in x)  
+      {  
+         var z = x[i].split('=',2);  
+         vars[z[0]] = unescape(z[1]);  
+      }  
+  
+      // an array of all the parameters passed into the footer file  
+      var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];  
+        
+      // each page will have an element with class 'section' from the body of the footer HTML  
+      var y = document.getElementsByClassName('section');  
+      for(var j = 0; j < y.length; j++)  
+      {  
+         // if current page equals total pages  
+         if (vars[x[2]] == vars[x[1]])  
+         {  
+            y[j].innerHTML = "I'm a footer only on the last page";  
+            
+         }  
+      } 
+     
+   }  */
+</script>
+<body onload="subst()">
+	<h2 id="doc-header" style="margin-bottom: 0px;color: red">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, consequuntur!</h2>
+</body>
+</html>
+<!-- 
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    Page <span id='page'></span> of 
+    <span id='topage'></span>   
+    <script> 
+      var vars={};
+      var x=window.location.search.substring(1).split('&');
+      for (var i in x) {
+        var z=x[i].split('=',2);
+        vars[z[0]] = unescape(z[1]);
+      }
+      document.getElementById('page').innerHTML = vars.page; 
+      document.getElementById('topage').innerHTML = vars.topage; 
+    </script> 
+  </body>
+</html>
+
+ -->
+
+
